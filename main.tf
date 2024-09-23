@@ -1,9 +1,10 @@
 resource "random_pet" "current" {
-  prefix    = "tf-jx"
+  prefix    = "jx3"
   separator = "-"
   keepers = {
     # Keep the name consistent on executions
     cluster_name = var.cluster_name
+     
   }
 }
 
@@ -14,6 +15,7 @@ locals {
 
 provider "aws" {
   region = var.region
+  profile = var.profile
 }
 
 data "aws_availability_zones" "available" {}
@@ -119,7 +121,7 @@ resource "aws_eks_addon" "ebs-csi" {
 
 // The VPC and EKS resources have been created, just install the cloud resources required by jx
 module "eks-jx" {
-  source = "github.com/jenkins-x/terraform-aws-eks-jx?ref=v3.0.1"
+  source = "github.com/jenkins-x/terraform-aws-eks-jx?ref=v3.0.2"
   region = var.region
 
   use_asm         = var.use_asm
@@ -129,10 +131,12 @@ module "eks-jx" {
   jx_git_url      = var.jx_git_url
   jx_bot_username = var.jx_bot_username
   jx_bot_token    = var.jx_bot_token
+  profile = var.profile
 
   nginx_chart_version = var.nginx_chart_version
 
   force_destroy = var.force_destroy
 
   cluster_name = module.eks.cluster_name
+  
 }

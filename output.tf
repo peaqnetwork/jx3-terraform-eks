@@ -1,3 +1,4 @@
+
 // Storage (backup, logs, reports, repo)
 output "lts_logs_bucket" {
   value       = module.eks-jx.lts_logs_bucket

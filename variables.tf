@@ -7,6 +7,11 @@ variable "region" {
   type        = string
   default = "eu-central-1"
 }
+variable "profile" {
+  description = "The AWS Profile used to provision the EKS Cluster"
+  type        = string
+  default     = "cicd"
+}
 
 variable "cluster_version" {
   description = "Kubernetes version to use for the EKS cluster."
@@ -39,7 +44,7 @@ variable "jx_bot_token" {
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster to create"
   type        = string
-  default     = "peaq-jx"
+  #default     = "peaq-jx"
 }
 
 variable "ami_type" {
