@@ -5,22 +5,26 @@
 variable "region" {
   description = "AWS region code for creating resources."
   type        = string
+  default = "eu-central-1"
 }
 
 variable "cluster_version" {
   description = "Kubernetes version to use for the EKS cluster."
   type        = string
+  default = "1.30"
 }
 
 
 variable "jx_git_url" {
   description = "URL for the Jenins X cluster git repository"
   type        = string
+  default = "https://github.com/peaqnetwork/jx3-eks-vault.git"
 }
 
 variable "jx_bot_username" {
   description = "Bot username used to interact with the Jenkins X cluster git repository"
   type        = string
+  default = "peaqbot"
 }
 
 variable "jx_bot_token" {
@@ -35,7 +39,7 @@ variable "jx_bot_token" {
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster to create"
   type        = string
-  default     = ""
+  default     = "peaq-jx"
 }
 
 variable "ami_type" {
@@ -70,22 +74,22 @@ variable "use_asm" {
 # VPC
 variable "vpc_name" {
   type    = string
-  default = "tf-vpc-eks"
+  default = "peaq-jx-vpc"
 }
 
 variable "public_subnets" {
   type    = list(string)
-  default = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  default = ["10.11.1.0/24", "10.11.2.0/24", "10.11.3.0/24"]
 }
 
 variable "private_subnets" {
   type    = list(string)
-  default = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  default = ["10.11.4.0/24", "10.11.5.0/24", "10.11.6.0/24"]
 }
 
 variable "vpc_cidr_block" {
   type    = string
-  default = "10.0.0.0/16"
+  default = "10.11.0.0/16"
 }
 
 variable "enable_nat_gateway" {

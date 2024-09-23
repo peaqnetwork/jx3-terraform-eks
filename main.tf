@@ -64,8 +64,8 @@ module "eks" {
     eks-jx-node-group = {
       ami_type     = var.ami_type
       desired_size = 3
-      min_size     = 2
-      max_size     = 5
+      min_size     = 3
+      max_size     = 3
 
       instance_types = [var.node_machine_type]
       k8s_labels = {
